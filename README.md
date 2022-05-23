@@ -1,70 +1,86 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 대가리
+## 물품 관리 시스템 개발
 
-## Available Scripts
+#### 파이어베이스 + 리엑트의 실시간 처리 어플리케이션 구현 
 
-In the project directory, you can run:
+```
+사용한것들 : 
+react 
+emotion/styled -> tailwind
+korean-regexp(한글 검색 기능때 사용한 npm)
+firebase 
+```
+---
+firebase 사용이유 
+1. 빠르게 개발가능, 인증, DB,
+2. 백엔드에 완벽한 지식이 없는 유저들의 데이터 안전보장
+단점
+1. 확장성이 적다(DB가 구글에 종속됨)
 
-### `yarn start`
+빠른개발로 아이디어의 테스트를 위해 Firebase를 사용
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `yarn test`
+```
+ 여기서부터 메모용
+0520금04:15 현재 submit.js 로 firebase에 등록되는거 확인
+0520 까지해야할꺼 
+1.리스트탭 2.관리자로그인 3.삭제 및 수정 4.테이블 관리자만 접속가능
+그 다음 해야할꺼 1.css 2.router(refactoring)
+금저녁-토아침 css 완성 <-무조건해야함
+토저녁-일오후 css 완성한다음 보여주는탭 연결까지
+일밤-월6시 관리자로그인 , 삭제 및 수정 ,테이블 패스
+화12시 - 6시 router 및 배포 해보기
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+대가리 BETA
+실시간 택배 조회 웹앱
+일단 crud 원리 깨우친다음
+페이지별로 간단 ui 적용
+일단 관리자 등록기능 구현 + firebase db rule
+물품 현황 리스트 탭 구현
+배포
 
-### `yarn build`
+관리자
+- 택배 추가 탭
+  - 입력 값 : 이름, 위치, 날짜(자동으로),메모
+- 물품현황 리스트 탭
+  - 물품 정보 수정 
+- 제가 가져갈께요 탭 (만든 이유: 관리자가 편하게 리스트 볼수있게)	 
+  - 승인(승인할 시 물품 정보수정(가져감))
+  - 반려(반려할 시 대기 리스트에서 빠져나감)
+- 로그 
+  - 누가 언제 가져갔는지 나타냄
+ 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+사용자
+- 물품현황 리스트 탭
++ 검색 바(필터 :  이름, 날짜 최신순 오래된순)
+  + 쓰로틀링
+  +(한글 자동완성 나중에)
+-- tag는 chip 검색
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
++ 제가 가져갈께요 탭
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+DB 
+- 사용자 정보 (관리자 확인)
+- 택배 현황
+- 로그
+카드{
+이름:  
+위치{
+    건물:
+    호수:
+  }
+}
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+추가적으로 할꺼
+번들링<-폴더에사진넣어놓음 북마크에 번들링 넣어놈
+client = react (나중에 typescript, nextjs )
+css = emotion 라이브러리(나중에 MUI적용)
+server, db = firebase  (나중에 react Qurey적용)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
