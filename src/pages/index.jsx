@@ -4,7 +4,7 @@ const Page = () => {
   return (
     <>
       <div className=" max-w-md  mx-auto h-screen flex justify-center items-center sm:max-w-xl ">
-        <div class="absolute inset-x-0 top-0 h-16 "></div>
+        <div className="absolute inset-x-0 top-0 h-16 "></div>
         <div className="bg-white h-1/2 flex flex-wrap justify-center  px-4 py-6 content-around">
           <Link to="submit">
             <div className=" group hover:bg-blue-500 hover:border-white   border-dashed border-2 text-center border-blue-500 rounded-md p-10">

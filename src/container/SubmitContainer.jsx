@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { handleNew } from "util/utils";
 import { InputImageFile } from "components/InputImageFile";
+import { handleImage } from "util/storage";
 
 // import { mock as userStore } from "./mock";
 const SubmitContainer = () => {
@@ -44,7 +45,8 @@ const SubmitContainer = () => {
 
   const onSubmit = (e) => {
     console.log("제출");
-    handleNew(form);
+
+    form.imagePath === "" ? handleNew(form) : handleImage(form);
     // firebase 값 전송 (성공)
     //여기서 이미지를 서버에올리고()
     //초기화

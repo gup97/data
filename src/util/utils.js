@@ -15,10 +15,23 @@ import { storage } from "util/firebase";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 
-export const handleNew = async ({ name, object, place, locker, memo, imagePath }) => {
+export const handleNew = async ({ name, object, place, locker, memo }) => {
+  const collectionRef = collection(db, "userStore");
+  const payload = {
+    name,
+    object,
+    place,
+    locker,
+    memo,
+    imagePath: "",
+    timestamp: serverTimestamp(),
+  };
+  await addDoc(collectionRef, payload);
+};
+
+export const handleImage = async ({ name, object, place, locker, memo, imagePath }) => {
   const imageRefPath = v4();
   const imageRef = ref(storage, `images/${imageRefPath}`);
-
   const response = await uploadString(imageRef, imagePath, "data_url");
   const imagePathUrl = await getDownloadURL(response.ref);
   const collectionRef = collection(db, "userStore");

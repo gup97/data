@@ -6,7 +6,8 @@ import DetailPage from "./pages/DatailPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    // <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Page />} />
         <Route path="/list" element={<ListPage />} />
