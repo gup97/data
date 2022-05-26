@@ -1,12 +1,9 @@
 import React from "react";
 import { db } from "util/firebase";
 import { useState, useEffect } from "react";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-// import { mock as userStore } from "../mock/mock.js";
-// const DetailPage = () => {
-const DetailPage = () => {
+import { doc, onSnapshot } from "firebase/firestore";
+const DetailContainer = () => {
   const { id } = useParams();
   const [userDoc, setUserDoc] = useState([
     {
@@ -26,7 +23,6 @@ const DetailPage = () => {
     });
     return unsub;
   }, []);
-  //
   return (
     <div className=" max-w-md mx-auto sm:max-w-3xl">
       <div className="bg-white px-4 py-6">
@@ -39,13 +35,10 @@ const DetailPage = () => {
               <img src={userDoc.imagePath} alt="aa" />
             </div>
           )}
-
-          {/* <p> {userDoc.location.imagePath}</p> */}
-          {/* <img src={userDoc.location.imagePath} alt="aa" /> */}
         </div>
       </div>
     </div>
   );
 };
 
-export default DetailPage;
+export default DetailContainer;

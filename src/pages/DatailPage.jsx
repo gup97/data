@@ -1,14 +1,14 @@
 import Header from "components/Header";
-import SubmitContainer from "container/SubmitContainer";
+import DetailContainer from "container/DetailContainer";
 import React, { Fragment } from "react";
 
-const SubmitPage = () => {
+const DatailPage = () => {
   return (
     <Fragment>
       <Header />
-      <SubmitContainer />
+      <DetailContainer />
     </Fragment>
   );
 };
 
-export default SubmitPage;
+export default DatailPage;

@@ -1,14 +1,13 @@
 import Header from "components/Header";
-import SubmitContainer from "container/SubmitContainer";
 import React, { Fragment } from "react";
 
-const SubmitPage = () => {
+const Layout = ({ children }) => {
   return (
     <Fragment>
       <Header />
-      <SubmitContainer />
+      <main>{children}</main>
     </Fragment>
   );
 };
 
-export default SubmitPage;
+export default Layout;
