@@ -1,38 +1,17 @@
 import React from "react";
-import db from "util/firebase";
-import { useState, useEffect } from "react";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { useState } from "react";
 import { handleNew } from "util/utils";
+import { InputImageFile } from "components/InputImageFile";
 
+// import { mock as userStore } from "./mock";
 const SubmitPage = () => {
-  const dormitorys = [
-    "아마레관", //0
-    "예지관", //1
-    "세르비레관", //2
-    "효성관", //3
-    "성김대건관", //4
-    "다솜관", //5
-    "참인재관", //6
-    "주소미입력", //7
-  ];
-  const [userStore, setUserStore] = useState([{ name: "loading", id: "initial" }]);
-
-  useEffect(() => {
-    const collectionRef = collection(db, "userStore");
-    const q = query(collectionRef, orderBy("timestamp", "desc"));
-
-    const unsub = onSnapshot(q, (snapshot) => {
-      setUserStore(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    });
-    return unsub;
-  }, []);
-
   const [form, setForm] = useState({
-    name: "", //input
-    memo: "",
-    darm: "아마레관", //option
-    room: "", //input
-    place: "",
+    name: "", //습득한사람 이름
+    object: "", //물건 종류
+    place: "", //습득위치
+    locker: "", // 보관장소
+    memo: "", //
+    imagePath: "",
   });
 
   const onChange = (e) => {
@@ -45,21 +24,39 @@ const SubmitPage = () => {
   const showData = () => {
     console.log(form);
   };
+  const onFileChange = (e) => {
+    const {
+      target: { files },
+    } = e;
+    const theFile = files[0];
+    const reader = new FileReader();
+    reader.onloadend = (finishedEvent) => {
+      const {
+        currentTarget: { result },
+      } = finishedEvent;
+      setForm((state) => ({
+        ...state,
+        imagePath: result,
+      }));
+    };
+    reader.readAsDataURL(theFile);
+  };
 
   const onSubmit = (e) => {
     console.log("제출");
-
+    handleNew(form);
+    // firebase 값 전송 (성공)
+    //여기서 이미지를 서버에올리고()
     //초기화
     setForm({
-      name: "", //input
-      memo: "",
-      darm: "아마레관", //option
-      room: "", //input
-      place: "", //input
+      name: "", //습득한사람 이름
+      object: "", //물건 종류
+      place: "", //습득위치
+      locker: "", // 보관장소
+      memo: "", //
+      imagePath: "",
     });
-
-    // firebase 값 전송 (성공)
-    handleNew(form);
+    console.log(form);
     e.preventDefault();
   };
   return (
@@ -67,14 +64,14 @@ const SubmitPage = () => {
       <div className="bg-white px-4 py-6">
         <div className="mt-1 relative rounded-md shadow-sm"></div>
         <div className="mt-10">
-          <form onSubmit={onSubmit} className="w-full sm:max-w-3xl">
-            <div className="flex flex-wrap -mx-3 mb-0 sm:mb-7">
-              <div className="w-full md:w-1/2 px-3 mb-2 md:mb-0">
+          <form onSubmit={onSubmit} className="w-full sm:max-w-3xl sm:text-sm">
+            <div className="flex flex-wrap -mx-3  md:mb-6">
+              <div className="w-full md:w-1/2 px-3 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   이름
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
                   id="grid-first-name"
                   type="text"
                   placeholder="이름을 입력하세요"
@@ -85,77 +82,66 @@ const SubmitPage = () => {
               </div>
               <div className="w-full md:w-1/2 px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  추가입력사항
+                  습득 위치
                 </label>
                 <input
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-last-name"
                   type="text"
-                  placeholder="추가입력"
+                  placeholder="습득한 위치"
+                  onChange={onChange}
+                  name="place"
+                  value={form.place}
+                />
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-1/3 px-3 md:mb-6">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  물건종류
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="text"
+                  placeholder="종류"
+                  onChange={onChange}
+                  name="object"
+                  value={form.object}
+                />
+              </div>
+              <div className="w-full md:w-1/3 px-3 md:mb-6">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  보관장소
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="text"
+                  placeholder="맡겨놓은 장소"
+                  onChange={onChange}
+                  name="locker"
+                  value={form.locker}
+                />
+              </div>
+              <div className="w-full md:w-1/3 px-3 md:mb-6">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  메모
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-zip"
+                  type="text"
+                  placeholder="추가사항입력"
                   onChange={onChange}
                   name="memo"
                   value={form.memo}
                 />
               </div>
             </div>
-            <div className="flex flex-wrap -mx-3 mb-6"></div>
             <div className="flex flex-wrap -mx-3 mb-2">
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  기숙사
-                </label>
-                <div className="relative">
-                  <select
-                    onChange={onChange}
-                    name="darm"
-                    value={form.darm}
-                    className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-state"
-                  >
-                    {dormitorys.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg
-                      className="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  호수
-                </label>
-                <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-city"
-                  type="text"
-                  placeholder="방 번호를 입력하세요"
-                  onChange={onChange}
-                  name="room"
-                  value={form.room}
-                />
-              </div>
-              <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  위치
-                </label>
-                <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-zip"
-                  type="text"
-                  placeholder="위치를 입력하세요"
-                  onChange={onChange}
-                  name="place"
-                  value={form.place}
-                />
+              <div className="w-full px-3 mb-15 md:mb-0">
+                <InputImageFile onChange={onFileChange} form={form} />
               </div>
             </div>
             <div className="mt-10 sm:mt-20">

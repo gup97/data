@@ -1,4 +1,4 @@
-import db from "util/firebase";
+import { db } from "util/firebase";
 import {
   collection,
   addDoc,
@@ -11,10 +11,26 @@ import {
   updateDoc,
 } from "firebase/firestore";
 //create
+import { storage } from "util/firebase";
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 
-export const handleNew = async ({ name, memo, darm, room, place }) => {
+export const handleNew = async ({ name, object, place, locker, memo, imagePath }) => {
+  const imageRefPath = v4();
+  const imageRef = ref(storage, `images/${imageRefPath}`);
+
+  const response = await uploadString(imageRef, imagePath, "data_url");
+  const imagePathUrl = await getDownloadURL(response.ref);
   const collectionRef = collection(db, "userStore");
-  const payload = { name, memo, darm, room, place, timestamp: serverTimestamp() };
+  const payload = {
+    name,
+    object,
+    place,
+    locker,
+    memo,
+    imagePath: imagePathUrl,
+    timestamp: serverTimestamp(),
+  };
   await addDoc(collectionRef, payload);
 };
 

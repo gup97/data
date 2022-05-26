@@ -6,6 +6,6 @@ function 한글조건(targetText, input) {
 
   if (검사완료 > -1) return true;
 }
-export default function 입력값을만족하는배열(arr, input) {
-  return arr.filter((val) => 한글조건(val.name, input));
+export default function 입력값을만족하는배열(arr, input, filterCondition) {
+  return arr.filter((val) => 한글조건(val[`${filterCondition}`], input));
 }

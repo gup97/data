@@ -28,11 +28,18 @@ firebase 사용이유
 04:15 현재 submit.js 로 firebase에 등록되는거 확인
 시작날짜 0520
 1.리스트탭 2.관리자로그인 3.삭제 및 수정 4.테이블 관리자만 접속가능
-그 다음 해야할꺼 1.css 2.router(refactoring)
-금저녁-토아침 css 완성 <-무조건해야함
-토저녁-일오후 css 완성한다음 보여주는탭 연결까지
-일밤-월6시 관리자로그인 , 삭제 및 수정 ,테이블 패스
-화12시 - 6시 router 및 배포 해보기
+현재 listpage , submitpage 
+
+목표
+ - 수
+ - userStorage 에서 lostfound(못찾은물건들) , logfound(찾은물건들)
+ - 사진 추가,delete page ,update page 
+ - 관리자 페이지 (관리자에서 삭제가능)
+ - listpage에서 클릭시 상세정보 페이지 금
+ - 라우팅 , 배포까지 토요일
+ 일요일부터
+ + kakao 맵 되는지 확인 
+ + 상세정보 페이지에서 지도 추가(선택)(위도 경도 받아오기)
 
 대가리 BETA
 실시간 분실관리서비스 조회 웹앱
