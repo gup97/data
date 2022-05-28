@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { handleNew } from "util/utils";
+import { handleAddItem } from "util/utils";
 import { InputImageFile } from "components/InputImageFile";
-import { handleImage } from "util/storage";
 
 // import { mock as userStore } from "./mock";
 const SubmitContainer = () => {
@@ -45,8 +44,7 @@ const SubmitContainer = () => {
 
   const onSubmit = (e) => {
     console.log("제출");
-
-    form.imagePath === "" ? handleNew(form) : handleImage(form);
+    handleAddItem(form);
     // firebase 값 전송 (성공)
     //여기서 이미지를 서버에올리고()
     //초기화
@@ -58,7 +56,6 @@ const SubmitContainer = () => {
       memo: "", //
       imagePath: "",
     });
-    console.log(form);
     e.preventDefault();
   };
   return (
@@ -68,7 +65,7 @@ const SubmitContainer = () => {
         <div className="mt-10">
           <form onSubmit={onSubmit} className="w-full sm:max-w-3xl sm:text-sm">
             <div className="flex flex-wrap -mx-3  md:mb-6">
-              <div className="w-full md:w-1/2 px-3 md:mb-0">
+              <div className="w-1/2 md:w-1/4  px-3 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   이름
                 </label>
@@ -82,23 +79,21 @@ const SubmitContainer = () => {
                   value={form.name}
                 />
               </div>
-              <div className="w-full md:w-1/2 px-3">
+              <div className="w-1/2 md:w-1/4 px-3 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  습득 위치
+                  비번
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-last-name"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
+                  id="grid-first-name"
                   type="text"
-                  placeholder="습득한 위치"
+                  placeholder="이름을 입력하세요"
                   onChange={onChange}
-                  name="place"
-                  value={form.place}
+                  name="name"
+                  value={form.name}
                 />
               </div>
-            </div>
-            <div className="flex flex-wrap -mx-3 mb-6">
-              <div className="w-full md:w-1/3 px-3 md:mb-6">
+              <div className="w-full md:w-1/2 px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   물건종류
                 </label>
@@ -110,6 +105,22 @@ const SubmitContainer = () => {
                   onChange={onChange}
                   name="object"
                   value={form.object}
+                />
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-1/3 px-3 md:mb-6">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  습득 위치
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-last-name"
+                  type="text"
+                  placeholder="습득한 위치"
+                  onChange={onChange}
+                  name="place"
+                  value={form.place}
                 />
               </div>
               <div className="w-full md:w-1/3 px-3 md:mb-6">
@@ -142,15 +153,20 @@ const SubmitContainer = () => {
               </div>
             </div>
             <div className="flex flex-wrap -mx-3 mb-2">
-              <div className="w-full px-3 mb-15 md:mb-0">
+              <div className="w-full md:w-1/2 px-3 mb-15 md:mb-0">
                 <InputImageFile onChange={onFileChange} form={form} />
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-15 md:mb-0">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  GPS 기능 추가중
+                </label>
               </div>
             </div>
             <div className="mt-10 sm:mt-20">
               <button
                 type="submit"
                 onClick={showData}
-                className="block w-full px-4 py-2 border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus-offset-2 focus:ring-indigo-500 "
+                className="block w-full  px-4 py-2 border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus-offset-2 focus:ring-indigo-500 "
               >
                 Submit
               </button>

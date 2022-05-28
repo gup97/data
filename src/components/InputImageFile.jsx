@@ -6,11 +6,11 @@ export const InputImageFile = ({ onChange, form }) => {
         물건 사진
       </label>
       {imagePath ? (
-        <div className="flex justify-start mt-8 gap-5">
+        <div className="flex justify-start gap-5">
           <img src={imagePath} alt="preview" className="flex items-center  w-40" />
           <div className="w-40 flex flex-col justify-around ">
             <div className="flex justify-center content-center">
-              <button className="w-28 h-10 text-white bg-blue-500 rounded shadow-xl">
+              <button onClick={} className="w-28 h-10 text-white bg-blue-500 rounded shadow-xl">
                 image delete
               </button>
             </div>
@@ -22,8 +22,8 @@ export const InputImageFile = ({ onChange, form }) => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-start  mt-8">
-          <div className="max-w-2xl rounded-lg shadow-xl bg-gray-50">
+        <div className="flex">
+          <div className="w-full rounded-lg shadow-xl bg-gray-50">
             <div className="m-4">
               <div className="flex items-center justify-center w-full">
                 <label className="flex flex-col w-full h-32 border-4 border-blue-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
