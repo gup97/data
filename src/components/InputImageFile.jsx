@@ -1,5 +1,22 @@
-export const InputImageFile = ({ onChange, form }) => {
-  const imagePath = form.imagePath;
+export const InputImageFile = ({ data, setData }) => {
+  const imagePath = data.imagePath;
+  const onFileChange = (e) => {
+    const {
+      target: { files },
+    } = e;
+    const theFile = files[0];
+    const reader = new FileReader();
+    reader.onloadend = (finishedEvent) => {
+      const {
+        currentTarget: { result },
+      } = finishedEvent;
+      setData((state) => ({
+        ...state,
+        imagePath: result,
+      }));
+    };
+    reader.readAsDataURL(theFile);
+  };
   return (
     <>
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
@@ -10,7 +27,7 @@ export const InputImageFile = ({ onChange, form }) => {
           <img src={imagePath} alt="preview" className="flex items-center  w-40" />
           <div className="w-40 flex flex-col justify-around ">
             <div className="flex justify-center content-center">
-              <button onClick={} className="w-28 h-10 text-white bg-blue-500 rounded shadow-xl">
+              <button className="w-28 h-10 text-white bg-blue-500 rounded shadow-xl">
                 image delete
               </button>
             </div>
@@ -51,7 +68,7 @@ export const InputImageFile = ({ onChange, form }) => {
                     type="file"
                     accept="image/*"
                     name="imagePath"
-                    onChange={onChange}
+                    onChange={onFileChange}
                   ></input>
                 </label>
               </div>

@@ -24,23 +24,6 @@ const SubmitContainer = () => {
   const showData = () => {
     console.log(form);
   };
-  const onFileChange = (e) => {
-    const {
-      target: { files },
-    } = e;
-    const theFile = files[0];
-    const reader = new FileReader();
-    reader.onloadend = (finishedEvent) => {
-      const {
-        currentTarget: { result },
-      } = finishedEvent;
-      setForm((state) => ({
-        ...state,
-        imagePath: result,
-      }));
-    };
-    reader.readAsDataURL(theFile);
-  };
 
   const onSubmit = (e) => {
     console.log("제출");
@@ -154,7 +137,7 @@ const SubmitContainer = () => {
             </div>
             <div className="flex flex-wrap -mx-3 mb-2">
               <div className="w-full md:w-1/2 px-3 mb-15 md:mb-0">
-                <InputImageFile onChange={onFileChange} form={form} />
+                <InputImageFile data={form} setData={setForm} />
               </div>
               <div className="w-full md:w-1/2 px-3 mb-15 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">

@@ -41,23 +41,6 @@ const EditContainer = () => {
     e.preventDefault();
     navigate(-1);
   };
-  const onFileChange = (e) => {
-    const {
-      target: { files },
-    } = e;
-    const theFile = files[0];
-    const reader = new FileReader();
-    reader.onloadend = (finishedEvent) => {
-      const {
-        currentTarget: { result },
-      } = finishedEvent;
-      setUserDoc((state) => ({
-        ...state,
-        imagePath: result,
-      }));
-    };
-    reader.readAsDataURL(theFile);
-  };
 
   return (
     <div className=" max-w-md mx-auto max-h-full sm:max-w-3xl">
@@ -156,7 +139,7 @@ const EditContainer = () => {
               </div>
               <div className="flex flex-wrap -mx-3 mb-2">
                 <div className="w-full md:w-1/2 px-3 mb-15 md:mb-0">
-                  <InputImageFile onChange={onFileChange} form={userDoc} />
+                  <InputImageFile data={userDoc} setData={setUserDoc} />
                 </div>
                 <div className="w-full md:w-1/2 px-3 mb-15 md:mb-0">
                   <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
