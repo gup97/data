@@ -7,6 +7,7 @@ import { InputImageFile } from "components/InputImageFile";
 const SubmitContainer = () => {
   const [form, setForm] = useState({
     name: "", //습득한사람 이름
+    password: "", //비번
     object: "", //물건 종류
     place: "", //습득위치
     locker: "", // 보관장소
@@ -33,6 +34,7 @@ const SubmitContainer = () => {
     //초기화
     setForm({
       name: "", //습득한사람 이름
+      password: "",
       object: "", //물건 종류
       place: "", //습득위치
       locker: "", // 보관장소
@@ -54,7 +56,7 @@ const SubmitContainer = () => {
                 </label>
                 <input
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
-                  id="grid-first-name"
+                  id="input-name"
                   type="text"
                   placeholder="이름을 입력하세요"
                   onChange={onChange}
@@ -68,12 +70,12 @@ const SubmitContainer = () => {
                 </label>
                 <input
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="이름을 입력하세요"
+                  id="input-password"
+                  type="password"
+                  placeholder="비번"
                   onChange={onChange}
-                  name="name"
-                  value={form.name}
+                  name="password"
+                  value={form.password}
                 />
               </div>
               <div className="w-full md:w-1/2 px-3">
@@ -112,7 +114,6 @@ const SubmitContainer = () => {
                 </label>
                 <input
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-city"
                   type="text"
                   placeholder="맡겨놓은 장소"
                   onChange={onChange}

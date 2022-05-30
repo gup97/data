@@ -72,10 +72,10 @@ const EditContainer = () => {
                     className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
                     id="grid-first-name"
                     type="text"
-                    placeholder="이름을 입력하세요"
+                    placeholder="비번"
                     onChange={onChange}
-                    name="name"
-                    value={userDoc.name}
+                    name="password"
+                    value={userDoc.password}
                   />
                 </div>
                 <div className="w-full md:w-1/2 px-3">

@@ -12,7 +12,15 @@ import { storage } from "util/firebase";
 import { ref, uploadString, getDownloadURL, deleteObject } from "firebase/storage";
 import { v4 } from "uuid";
 
-export const handleAddItem = async ({ name, object, place, locker, memo, imagePath }) => {
+export const handleAddItem = async ({
+  name,
+  password,
+  object,
+  place,
+  locker,
+  memo,
+  imagePath,
+}) => {
   let imagePathUrl = "",
     imageRefPath = "";
   if (imagePath !== "") {
@@ -24,6 +32,7 @@ export const handleAddItem = async ({ name, object, place, locker, memo, imagePa
   const collectionRef = collection(db, "userStore");
   const payload = {
     name,
+    password,
     object,
     place,
     locker,
@@ -37,7 +46,7 @@ export const handleAddItem = async ({ name, object, place, locker, memo, imagePa
 
 export const handleEdit = async (
   id,
-  { name, object, place, locker, memo, imagePath }
+  { name, password, object, place, locker, memo, imagePath }
 ) => {
   let imagePathUrl = "",
     imageRefPath = "";
@@ -50,6 +59,7 @@ export const handleEdit = async (
   const docRef = doc(db, "userStore", id);
   const payload = {
     name,
+    password,
     object,
     place,
     locker,
