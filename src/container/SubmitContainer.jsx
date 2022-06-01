@@ -2,9 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { handleAddItem } from "util/utils";
 import { InputImageFile } from "components/InputImageFile";
+import { InputDate } from "components/InputDate";
 
 // import { mock as userStore } from "./mock";
 const SubmitContainer = () => {
+  // const [date, setDate] = useState(new Date());
   const [form, setForm] = useState({
     name: "", //습득한사람 이름
     password: "", //비번
@@ -13,6 +15,7 @@ const SubmitContainer = () => {
     locker: "", // 보관장소
     memo: "", //
     imagePath: "",
+    date: new Date(),
   });
 
   const onChange = (e) => {
@@ -27,8 +30,8 @@ const SubmitContainer = () => {
   };
 
   const onSubmit = (e) => {
-    console.log("제출");
     handleAddItem(form);
+    console.log("제출");
     // firebase 값 전송 (성공)
     //여기서 이미지를 서버에올리고()
     //초기화
@@ -78,7 +81,7 @@ const SubmitContainer = () => {
                   value={form.password}
                 />
               </div>
-              <div className="w-full md:w-1/2 px-3">
+              <div className="w-1/2 md:w-1/4 px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   물건종류
                 </label>
@@ -92,9 +95,7 @@ const SubmitContainer = () => {
                   value={form.object}
                 />
               </div>
-            </div>
-            <div className="flex flex-wrap -mx-3 mb-6">
-              <div className="w-full md:w-1/3 px-3 md:mb-6">
+              <div className="w-1/2 md:w-1/4 px-3 md:mb-6">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   습득 위치
                 </label>
@@ -107,6 +108,16 @@ const SubmitContainer = () => {
                   name="place"
                   value={form.place}
                 />
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-1/3 px-3 md:mb-6">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  날짜
+                </label>
+                <div>
+                  <InputDate data={form.date} setData={setForm} />
+                </div>
               </div>
               <div className="w-full md:w-1/3 px-3 md:mb-6">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">

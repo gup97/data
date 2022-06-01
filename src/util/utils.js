@@ -20,6 +20,7 @@ export const handleAddItem = async ({
   locker,
   memo,
   imagePath,
+  date,
 }) => {
   let imagePathUrl = "",
     imageRefPath = "";
@@ -37,6 +38,7 @@ export const handleAddItem = async ({
     place,
     locker,
     memo,
+    date,
     imagePath: imagePathUrl,
     StoragePath: imageRefPath,
     timestamp: serverTimestamp(),
