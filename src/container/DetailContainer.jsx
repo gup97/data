@@ -31,16 +31,12 @@ const DetailContainer = () => {
           <div className="mt-1 relative ">
             <p>{userDoc.name}님의 글</p>
             <div className="md:flex gap-3">
-              {userDoc.imagePath ? (
+              {userDoc.imagePath && (
                 <img
                   className="md:w-1/2 h-1/2 max-h-1/2 max-w-1/2"
                   src={userDoc.imagePath}
-                  alt="aa"
+                  alt="미리보기 이미지"
                 />
-              ) : (
-                <div className=" md:w-1/2 h-48 flex justify-center items-center w-full bg-slate-200 max-h-1/2 max-w-1/2">
-                  <p>첨부된 이미지가 없습니다.</p>
-                </div>
               )}
               <div className="w-full flex flex-col justify-around  ">
                 <div>
