@@ -50,7 +50,7 @@ const SubmitContainer = () => {
   };
   return (
     <div className=" max-w-md mx-auto max-h-full sm:max-w-3xl">
-      <div className="bg-white px-4 py-6">
+      <div className="bg-white px-4 py-1">
         <div className="mt-1 relative rounded-md shadow-sm"></div>
         <div className="mt-10">
           <form onSubmit={onSubmit} className="w-full sm:max-w-3xl sm:text-sm">
@@ -81,6 +81,7 @@ const SubmitContainer = () => {
                   onChange={onChange}
                   name="password"
                   value={form.password}
+                  autoComplete="off"
                 />
               </div>
               <div className="w-1/2 md:w-1/4 px-3">

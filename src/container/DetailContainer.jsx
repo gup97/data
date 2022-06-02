@@ -19,11 +19,6 @@ const DetailContainer = () => {
     return unsub;
   }, []);
 
-  const onClickDelete = () => {
-    handleDeleteImage(userDoc.StoragePath);
-    handleDelete(id);
-    navigate(-1);
-  };
   return (
     <div className=" max-w-md mx-auto sm:max-w-3xl">
       <div className="bg-white px-4 py-6">
@@ -54,13 +49,14 @@ const DetailContainer = () => {
                     </Link>
                   </div>
                   <div className="w-1/2">
-                    <button
-                      className=" w-full  px-4 py-2 border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus-offset-2 focus:ring-indigo-500 "
-                      type="button"
-                      onClick={onClickDelete}
-                    >
-                      삭제
-                    </button>
+                    <Link to={`/delete/${id}`}>
+                      <button
+                        className=" w-full  px-4 py-2 border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus-offset-2 focus:ring-indigo-500 "
+                        type="button"
+                      >
+                        삭제
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>

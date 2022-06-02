@@ -34,6 +34,7 @@ const renderHeaderContents = ({
 }) => {
   return (
     <div className="flex justify-between">
+      <div className="absolute bottom-20 text-white font-sans font-bold w-full"></div>
       <button type="button" onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -78,11 +79,13 @@ export const FilterDate = ({ dateFiltering, date, setDate }) => {
     <DatePicker
       withPortal
       selected={date}
+      locale={ko}
       onChange={(e) => {
         setDate(e);
         dateFiltering();
       }}
       customInput={<ExampleCustomInput />}
+      renderCustomHeader={renderHeaderContents}
     />
   );
 };
