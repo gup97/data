@@ -5,16 +5,20 @@ import { InputImageFile } from "components/InputImageFile";
 import { useNavigate, useParams } from "react-router-dom";
 import { doc, onSnapshot } from "firebase/firestore";
 import { handleEdit, handleDeleteImage } from "util/utils";
+import { InputDate } from "components/InputDate";
 // import { mock as userStore } from "./mock";
 const EditContainer = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [userDoc, setUserDoc] = useState();
+  const [delTargetImg, setDelTargetImg] = useState();
   useEffect(() => {
     const docRef = doc(db, "userStore", id);
     const unsub = onSnapshot(docRef, (snapshot) => {
       setUserDoc(snapshot.data());
       console.log("doc fetching- edit");
+
+      setDelTargetImg(snapshot.data().StoragePath);
     });
     return unsub;
   }, []);
@@ -31,12 +35,15 @@ const EditContainer = () => {
     console.log(id);
     console.log(userDoc);
   };
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     console.log("제출버튼누름");
     // firebase 값 전송 (성공)
     //여기서 이미지를 서버에올리고()
     //초기화
-    handleDeleteImage(userDoc);
+    if (userDoc.StoragePath !== delTargetImg) {
+      console.log("deleteimage");
+      handleDeleteImage(delTargetImg);
+    }
     handleEdit(id, userDoc);
     e.preventDefault();
     navigate(-1);
@@ -78,7 +85,7 @@ const EditContainer = () => {
                     value={userDoc.password}
                   />
                 </div>
-                <div className="w-full md:w-1/2 px-3">
+                <div className="w-1/2  md:w-1/4 px-3">
                   <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                     물건종류
                   </label>
@@ -92,9 +99,7 @@ const EditContainer = () => {
                     value={userDoc.object}
                   />
                 </div>
-              </div>
-              <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full md:w-1/3 px-3 md:mb-6">
+                <div className="w-1/2 md:w-1/4 px-3 md:mb-6">
                   <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                     습득 위치
                   </label>
@@ -107,6 +112,16 @@ const EditContainer = () => {
                     name="place"
                     value={userDoc.place}
                   />
+                </div>
+              </div>
+              <div className="flex flex-wrap -mx-3 mb-6">
+                <div className="w-full md:w-1/3 px-3 md:mb-6">
+                  <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                    날짜
+                  </label>
+                  <div>
+                    <InputDate data={userDoc.date} setData={setUserDoc} />
+                  </div>
                 </div>
                 <div className="w-full md:w-1/3 px-3 md:mb-6">
                   <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">

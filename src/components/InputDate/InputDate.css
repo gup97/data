@@ -1,2 +1,6 @@
-.test{
+.input-date .react-datepicker__day--selected{ 
+    background: silver;
+}
+.react-datepicker-wrapper{
+    width: auto;
 }

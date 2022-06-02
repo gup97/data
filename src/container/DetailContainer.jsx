@@ -20,7 +20,7 @@ const DetailContainer = () => {
   }, []);
 
   const onClickDelete = () => {
-    handleDeleteImage(userDoc);
+    handleDeleteImage(userDoc.StoragePath);
     handleDelete(id);
     navigate(-1);
   };
@@ -31,7 +31,7 @@ const DetailContainer = () => {
           <div className="mt-1 relative ">
             <p>{userDoc.name}님의 글</p>
             <div className="md:flex gap-3">
-              {userDoc.imagePath && (
+              {userDoc.imagePath !== "" && (
                 <img
                   className="md:w-1/2 h-1/2 max-h-1/2 max-w-1/2"
                   src={userDoc.imagePath}

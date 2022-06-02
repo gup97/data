@@ -1,5 +1,5 @@
 export const InputImageFile = ({ data, setData }) => {
-  const imagePath = data.imagePath;
+  const preImagePath = data.imagePath;
   const onFileChange = (e) => {
     const {
       target: { files },
@@ -21,6 +21,7 @@ export const InputImageFile = ({ data, setData }) => {
     setData((state) => ({
       ...state,
       imagePath: "",
+      StoragePath: "",
     }));
   };
   return (
@@ -28,12 +29,13 @@ export const InputImageFile = ({ data, setData }) => {
       <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
         물건 사진
       </label>
-      {imagePath ? (
+      {preImagePath ? (
         <div className="flex justify-start gap-5">
-          <img src={imagePath} alt="preview" className="flex items-center  w-40" />
+          <img src={preImagePath} alt="preview" className="flex items-center  w-40" />
           <div className="w-40 flex flex-col justify-around ">
             <div className="flex justify-center content-center">
               <button
+                type="button"
                 onClick={refresh}
                 className="flex-wrap border-2 rounded-3xl p-4 group"
               >

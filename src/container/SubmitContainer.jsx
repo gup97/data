@@ -19,6 +19,7 @@ const SubmitContainer = () => {
   });
 
   const onChange = (e) => {
+    console.log(form);
     const { value, name } = e.target;
     setForm((state) => ({
       ...state,
@@ -43,6 +44,7 @@ const SubmitContainer = () => {
       locker: "", // 보관장소
       memo: "", //
       imagePath: "",
+      date: new Date(),
     });
     e.preventDefault();
   };
@@ -116,7 +118,12 @@ const SubmitContainer = () => {
                   날짜
                 </label>
                 <div>
-                  <InputDate data={form.date} setData={setForm} />
+                  <InputDate
+                    userDoc={form}
+                    onChange={onChange}
+                    data={form.date}
+                    setData={setForm}
+                  />
                 </div>
               </div>
               <div className="w-full md:w-1/3 px-3 md:mb-6">

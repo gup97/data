@@ -48,7 +48,7 @@ export const handleAddItem = async ({
 
 export const handleEdit = async (
   id,
-  { name, password, object, place, locker, memo, imagePath }
+  { name, password, object, place, locker, memo, imagePath, date }
 ) => {
   let imagePathUrl = "",
     imageRefPath = "";
@@ -66,6 +66,7 @@ export const handleEdit = async (
     place,
     locker,
     memo,
+    date,
     imagePath: imagePathUrl,
     StoragePath: imageRefPath,
     timestamp: serverTimestamp(),
@@ -78,9 +79,18 @@ export const handleDelete = async (id) => {
   console.log(id);
   await deleteDoc(docRef);
 };
-export const handleDeleteImage = async ({ StoragePath }) => {
+
+export const handleDeleteImage = async (StoragePath) => {
   if (StoragePath === "") return;
   const desertRef = ref(storage, `images/${StoragePath}`);
-  console.log(desertRef);
-  await deleteObject(desertRef);
+  await deleteObject(desertRef)
+    .then(() => {
+      console.log("이미지삭제완료");
+      console.log(StoragePath);
+      // File deleted successfully
+    })
+    .catch((error) => {
+      console.log("이미지삭제중에러발생", error);
+      // Uh-oh, an error occurred!
+    });
 };
