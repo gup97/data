@@ -9,12 +9,21 @@ export const InputDate = ({ data, setData }) => {
   if (Object.keys(data).includes("seconds")) {
     data = new Date(data.seconds * 1000);
   }
-
+  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+    <button
+      type="button"
+      className="appearance-none block w-full bg-gray-200 text-gray-700 border 
+      border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none text-left "
+      onClick={onClick}
+      ref={ref}
+    >
+      {value}
+    </button>
+  ));
   return (
     <DatePicker
       withPortal
-      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none  "
-      dateFormat="yyyy년 MM월 dd일"
+      customInput={<ExampleCustomInput />}
       onChange={(e) => setData((state) => ({ ...state, date: e }))}
       selected={data}
       locale={ko}
@@ -75,15 +84,16 @@ export const FilterDate = ({ dateFiltering, date, setDate }) => {
       <FilterIcon />
     </button>
   ));
+  const onChange = (e) => {
+    setDate(e);
+    dateFiltering(e);
+  };
   return (
     <DatePicker
       withPortal
       selected={date}
       locale={ko}
-      onChange={(e) => {
-        setDate(e);
-        dateFiltering();
-      }}
+      onChange={onChange}
       customInput={<ExampleCustomInput />}
       renderCustomHeader={renderHeaderContents}
     />

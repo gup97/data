@@ -21,6 +21,7 @@ export const handleAddItem = async ({
   memo,
   imagePath,
   date,
+  location,
 }) => {
   let imagePathUrl = "",
     imageRefPath = "";
@@ -30,6 +31,7 @@ export const handleAddItem = async ({
     const response = await uploadString(imageRef, imagePath, "data_url");
     imagePathUrl = await getDownloadURL(response.ref);
   }
+  console.log(location);
   const collectionRef = collection(db, "userStore");
   const payload = {
     name,
@@ -41,6 +43,7 @@ export const handleAddItem = async ({
     date,
     imagePath: imagePathUrl,
     StoragePath: imageRefPath,
+    location,
     timestamp: serverTimestamp(),
   };
   await addDoc(collectionRef, payload);
