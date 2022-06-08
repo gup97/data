@@ -7,7 +7,7 @@ import { InputSearch } from "components/InputSearch.jsx";
 import { ListData } from "components/ListData";
 import { Link } from "react-router-dom";
 import { LoadingSpinner } from "components/Loading/LoadingSpinner";
-import { FilterDate, ShowDate } from "components/InputDate";
+import { FilterDate, timestampToLocaleString } from "components/InputDate";
 import { MapListContainer } from "./MapContainer";
 import { BottomSheetModal } from "components/BottomSheetModal";
 // import { mock as userStore } from "../mock/mock.js";
@@ -90,7 +90,13 @@ const ListContainer = () => {
                 {/* <InputDate data={filterDay.date} setData={setFilterDay} /> */}
                 <InputSearch value={text} handleChange={setText} />
               </div>
-              <div className="mt-3">{filterDay && <ShowDate date={filterDay} />}</div>
+              <div className="mt-3">
+                {filterDay && (
+                  <span>
+                    {timestampToLocaleString(filterDay)} 부터 습득된 데이터입니다.
+                  </span>
+                )}
+              </div>
               <div>
                 {userStore && (
                   <ul className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -100,7 +106,7 @@ const ListContainer = () => {
                           <ListData
                             main={user.object}
                             sub={user.place}
-                            part={user.name}
+                            part={user.date}
                           />
                         </Link>
                       </li>

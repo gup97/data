@@ -104,15 +104,11 @@ export const FilterDate = ({ dateFiltering, date, setDate }) => {
     />
   );
 };
-export const ShowDate = ({ date }) => {
-  return (
-    <span>
-      {date.toLocaleString("ko", {
-        month: "long",
-        year: "numeric",
-        day: "numeric",
-      })}
-      부터 습득된 데이터입니다.
-    </span>
-  );
+
+export const timestampToLocaleString = (date) => {
+  return date.toLocaleString("ko", {
+    month: "long",
+    year: "numeric",
+    day: "numeric",
+  });
 };
