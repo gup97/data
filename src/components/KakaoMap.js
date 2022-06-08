@@ -1,7 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 /* global kakao */
 export default function KakaoMap(props) {
-  const { markerPositions, size, setData } = props;
+  const { size, setData, data } = props;
+  const {
+    markerPositions,
+    markerUser,
+    mouseOver,
+    MouseClick,
+    mouseOut,
+    CustomOverLayout,
+    mapClick,
+  } = props;
   const [kakaoMap, setKakaoMap] = useState(null);
   const [, setMarkers] = useState([]);
   const CENTER_VALUE = { lat: 35.91049066285645, lng: 128.80801119490002 };
@@ -42,25 +51,46 @@ export default function KakaoMap(props) {
     }
     const positions = markerPositions.map((pos) => new kakao.maps.LatLng(...pos));
     console.log(markerPositions);
-    setMarkers((markers) => {
+    setMarkers(() => {
       // clear prev markers
-      console.log("markers", markers);
-      markers.forEach((marker) => marker.setMap(null));
-      // assign new markers
-      return positions.map((position) => {
+      console.log("positions", positions);
+      //남아 있던 마커제거
+      return positions.map((position, index) => {
         console.log("position", position);
-        new kakao.maps.Marker({ map: kakaoMap, position });
+        const marker = new kakao.maps.Marker({ map: kakaoMap, position });
+        const userData = markerUser[index];
+        // const tempContent = userData.object;
+        const tempContent = CustomOverLayout;
+
+        const content = `<div class="bg-black opacity-70 top-[20px] right-1 relative p-1">
+          <p class=" text-white">${userData.object}</p>
+        </div>`;
+
+        var overlayHover = new kakao.maps.CustomOverlay({
+          content,
+          map: kakaoMap,
+          position,
+        });
+        kakao.maps.event.addListener(marker, "mouseover", function () {
+          overlayHover.setMap(kakaoMap);
+          mouseOver();
+        });
+        kakao.maps.event.addListener(marker, "mouseout", function () {
+          overlayHover.setMap(null);
+          mouseOut();
+        });
+        kakao.maps.event.addListener(marker, "click", function () {
+          MouseClick(userData);
+          // overlay.setMap(kakaoMap);
+        });
+        kakao.maps.event.addListener(kakaoMap, "click", function () {
+          overlayHover.setMap(null);
+          mapClick();
+          // MouseClick(userData.id);
+        });
+        overlayHover.setMap(null);
       });
     });
-    console.log("positions", positions);
-    if (positions.length > 0) {
-      const bounds = positions.reduce(
-        (bounds, latlng) => bounds.extend(latlng),
-        new kakao.maps.LatLngBounds()
-      );
-
-      kakaoMap.setBounds(bounds);
-    }
   }, [kakaoMap, markerPositions]);
 
   useEffect(() => {
@@ -69,7 +99,7 @@ export default function KakaoMap(props) {
     }
     var marker = new kakao.maps.Marker({
       // 지도 중심좌표에 마커를 생성합니다
-      position: "",
+      position: data ? new kakao.maps.LatLng(data.location.lat, data.location.lng) : "",
     });
     // 지도에 마커를 표시합니다
     marker.setMap(kakaoMap);

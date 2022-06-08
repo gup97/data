@@ -1,12 +1,20 @@
-import React from "react";
-import { db } from "util/firebase";
-import { useState, useEffect } from "react";
-import { InputImageFile } from "components/InputImageFile";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { db } from "util/firebase";
 import { doc, onSnapshot } from "firebase/firestore";
+import { InputImageFile } from "components/InputImageFile";
 import { handleEdit, handleDeleteImage } from "util/utils";
 import { InputDate } from "components/InputDate";
+import { MapContainer } from "./MapContainer";
 import { PasswordModify } from "components/PasswordModify";
+import {
+  InputLocker,
+  InputMemo,
+  InputName,
+  InputObject,
+  InputPassword,
+  InputPlace,
+} from "components/InputText";
 
 // import { mock as userStore } from "./mock";
 const EditContainer = () => {
@@ -66,99 +74,32 @@ const EditContainer = () => {
               <form onSubmit={onSubmit} className="w-full sm:max-w-3xl sm:text-sm">
                 <div className="flex flex-wrap -mx-3  md:mb-6">
                   <div className="w-1/2 md:w-1/4  px-3 md:mb-0">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                      이름
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
-                      id="grid-first-name"
-                      type="text"
-                      placeholder="이름을 입력하세요"
-                      onChange={onChange}
-                      name="name"
-                      value={userDoc.name}
-                    />
+                    <InputName onChange={onChange} data={userDoc.name} />
                   </div>
                   <div className="w-1/2 md:w-1/4 px-3 md:mb-0">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                      비번
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white"
-                      id="grid-first-name"
-                      type="text"
-                      placeholder="비번"
-                      onChange={onChange}
-                      name="password"
-                      value={userDoc.password}
-                      autoComplete="off"
-                    />
+                    <InputPassword onChange={onChange} data={userDoc.password} />
                   </div>
                   <div className="w-1/2  md:w-1/4 px-3">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                      물건종류
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="grid-city"
-                      type="text"
-                      placeholder="종류"
-                      onChange={onChange}
-                      name="object"
-                      value={userDoc.object}
-                    />
+                    <InputObject onChange={onChange} data={userDoc.object} />
                   </div>
                   <div className="w-1/2 md:w-1/4 px-3 md:mb-6">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                      습득 위치
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="grid-last-name"
-                      type="text"
-                      placeholder="습득한 위치"
+                    <InputDate
+                      userDoc={userDoc}
                       onChange={onChange}
-                      name="place"
-                      value={userDoc.place}
+                      data={userDoc.date}
+                      setData={setUserDoc}
                     />
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full md:w-1/3 px-3 md:mb-6">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                      날짜
-                    </label>
-                    <div>
-                      <InputDate data={userDoc.date} setData={setUserDoc} />
-                    </div>
+                    <InputPlace onChange={onChange} data={userDoc.place} />
                   </div>
                   <div className="w-full md:w-1/3 px-3 md:mb-6">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                      보관장소
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="grid-city"
-                      type="text"
-                      placeholder="맡겨놓은 장소"
-                      onChange={onChange}
-                      name="locker"
-                      value={userDoc.locker}
-                    />
+                    <InputLocker onChange={onChange} data={userDoc.locker} />
                   </div>
                   <div className="w-full md:w-1/3 px-3 md:mb-6">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                      메모
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="grid-zip"
-                      type="text"
-                      placeholder="추가사항입력"
-                      onChange={onChange}
-                      name="memo"
-                      value={userDoc.memo}
-                    />
+                    <InputMemo onChange={onChange} data={userDoc.memo} />
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-2">
@@ -166,9 +107,7 @@ const EditContainer = () => {
                     <InputImageFile data={userDoc} setData={setUserDoc} />
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-15 md:mb-0">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                      GPS 기능 추가중
-                    </label>
+                    <MapContainer data={userDoc} setData={setUserDoc} />
                   </div>
                 </div>
                 <div className="mt-10 sm:mt-20">

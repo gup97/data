@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
   return (
-    <div className=" sticky left-0 top-0 w-full z-10 bg-white">
+    <div className=" sticky left-0 top-0 w-full z-10 ">
       <div className="px-18 m-auto items-center p-2">
         <div className="relative  flex-none py-13">
           <svg

@@ -51,7 +51,7 @@ export const handleAddItem = async ({
 
 export const handleEdit = async (
   id,
-  { name, password, object, place, locker, memo, imagePath, date }
+  { name, password, object, place, locker, memo, imagePath, date, location }
 ) => {
   let imagePathUrl = "",
     imageRefPath = "";
@@ -72,6 +72,7 @@ export const handleEdit = async (
     date,
     imagePath: imagePathUrl,
     StoragePath: imageRefPath,
+    location,
     timestamp: serverTimestamp(),
   };
   await updateDoc(docRef, payload);

@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { LoadingSpinner } from "components/Loading/LoadingSpinner";
 import { FilterDate, ShowDate } from "components/InputDate";
 import { MapListContainer } from "./MapContainer";
+import { BottomSheetModal } from "components/BottomSheetModal";
 // import { mock as userStore } from "../mock/mock.js";
 // const ListContainer = () => {
 const ListContainer = () => {
@@ -17,7 +18,8 @@ const ListContainer = () => {
   const [filterDay, setFilterDay] = useState(new Date());
   const [filter, setFilter] = useState("object");
 
-  const [tab, setTab] = useState(false);
+  const [tab, setTab] = useState(true);
+  const [modalToID, setModalToID] = useState();
   let filterArray = [];
 
   useEffect(() => {
@@ -36,16 +38,17 @@ const ListContainer = () => {
   const dateFiltering = (e) => {
     console.log("filterDay", e);
     const collectionRef = collection(db, "userStore");
-    const q = query(collectionRef, where("date", "<", e), orderBy("date", "desc"));
+    const q = query(collectionRef, where("date", ">", e), orderBy("date", "desc"));
     const unsub = onSnapshot(q, (snapshot) => {
       setUserStore(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
   };
+
   return (
     <>
       <div className="relative max-w-md mx-auto sm:max-w-3xl z-10">
-        <div className=" px-4 py-2">
-          <div className="flex justify-center items-center p-2">
+        <div className=" px-4">
+          <div className="flex justify-center items-center pb-2">
             <div>
               <ul className="flex justify-around items-center rounded-md bg-white w-80 h-10 border-2">
                 <li className="w-1/2 text-center cursor-pointer">
@@ -112,7 +115,16 @@ const ListContainer = () => {
       </div>
       {tab && (
         <div className=" absolute top-0 w-full h-screen z-0  ">
-          {userStore && <MapListContainer userData={userStore} />}
+          {userStore && (
+            <>
+              <MapListContainer
+                userData={userStore}
+                setModalToID={setModalToID}
+                modalToID={modalToID}
+              />
+              <BottomSheetModal modalToID={modalToID} />
+            </>
+          )}
         </div>
       )}
     </>

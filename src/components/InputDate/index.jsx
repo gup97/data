@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import "./InputDate.css";
-import { FilterIcon } from "components/FilterIcon";
+import { FilterIcon } from "SVG";
 // import { getDate } from "date-fns";
 export const InputDate = ({ data, setData }) => {
   if (Object.keys(data).includes("seconds")) {
@@ -21,16 +21,21 @@ export const InputDate = ({ data, setData }) => {
     </button>
   ));
   return (
-    <DatePicker
-      withPortal
-      customInput={<ExampleCustomInput />}
-      onChange={(e) => setData((state) => ({ ...state, date: e }))}
-      selected={data}
-      locale={ko}
-      renderCustomHeader={renderHeaderContents}
-      disabledKeyboardNavigation
-      calendarClassName="input-date" // worksworks
-    ></DatePicker>
+    <>
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+        날짜
+      </label>
+      <DatePicker
+        withPortal
+        customInput={<ExampleCustomInput />}
+        onChange={(e) => setData((state) => ({ ...state, date: e }))}
+        selected={data}
+        locale={ko}
+        renderCustomHeader={renderHeaderContents}
+        disabledKeyboardNavigation
+        calendarClassName="input-date" // worksworks
+      ></DatePicker>
+    </>
   );
 };
 
@@ -42,8 +47,8 @@ const renderHeaderContents = ({
   nextMonthButtonDisabled,
 }) => {
   return (
-    <div className="flex justify-between">
-      <div className="absolute bottom-20 text-white font-sans font-bold w-full"></div>
+    <div className="flex justify-between ">
+      <div className="absolute bottom-20 text-white font-sans font-bold w-full  "></div>
       <button type="button" onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

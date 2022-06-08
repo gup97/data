@@ -21,7 +21,7 @@ const DetailContainer = () => {
 
   return (
     <div className=" max-w-md mx-auto sm:max-w-3xl">
-      <div className="bg-white px-4 py-6">
+      <div className=" bg-slate-100 px-4 py-6 rounded-md shadow-xl">
         {userDoc && (
           <div className="mt-1 relative ">
             <p>{userDoc.name}님의 글</p>
@@ -35,10 +35,22 @@ const DetailContainer = () => {
               )}
               <div className="w-full flex flex-col justify-around  ">
                 <div>
-                  <p> {userDoc.object}</p>
-                  <p> {userDoc.place}</p>
-                  <p> {userDoc.locker}</p>
-                  <p> {userDoc.memo}</p>
+                  <p>
+                    <span className=" font-bold text-blue-700">습득물: </span>
+                    <span className=""> {userDoc.object}</span>
+                  </p>
+                  <p>
+                    <span className=" font-bold text-blue-700">습득위치: </span>
+                    <span className=""> {userDoc.place}</span>
+                  </p>
+                  <p>
+                    <span className=" font-bold text-blue-700">보관위치: </span>
+                    <span className=""> {userDoc.locker}</span>
+                  </p>
+                  <p>
+                    <span className=" font-bold text-blue-700">메모: </span>
+                    <span className=""> {userDoc.memo}</span>
+                  </p>
                 </div>
                 <div className=" flex gap-3 mt-2 w-full">
                   <div className="w-1/2">

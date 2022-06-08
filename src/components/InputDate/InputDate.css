@@ -1,5 +1,15 @@
-.input-date .react-datepicker__day--selected{ 
-    background: silver;
+.react-datepicker__day--selected{ 
+    background: rgb(47, 34, 130);
+    border-radius: 25px;   
+}
+ .react-datepicker__header--custom{
+    background: rgb(47, 34, 130);
+
+    color: white;
+} 
+.react-datepicker__day-name{
+    color: white;
+
 }
 .react-datepicker-wrapper{
     width: auto;
