@@ -28,7 +28,7 @@ export const InputImageFile = ({ data, setData }) => {
   };
   return (
     <>
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-2">
         물건 사진
       </label>
       {preImagePath ? (

@@ -32,7 +32,7 @@ const SubmitContainer = () => {
   });
 
   const onChange = (e) => {
-    console.log(form);
+    // console.log(form);
     const { value, name } = e.target;
     setForm((state) => ({
       ...state,
@@ -40,7 +40,7 @@ const SubmitContainer = () => {
     }));
   };
   const showData = () => {
-    console.log(form);
+    // console.log(form);
   };
 
   const onSubmit = (e) => {
@@ -77,7 +77,7 @@ const SubmitContainer = () => {
   };
   return (
     <div className=" max-w-md mx-auto max-h-full sm:max-w-3xl">
-      <div className="bg-white px-4 py-1">
+      <div className="bg-white px-4 py-1 pb-4">
         <form onSubmit={onSubmit} className="w-full sm:max-w-3xl sm:text-sm">
           <div className="flex flex-wrap -mx-3  md:mb-6">
             <div className="w-1/2 md:w-1/4  px-3 md:mb-0">

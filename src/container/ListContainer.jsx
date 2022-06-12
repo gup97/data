@@ -18,7 +18,7 @@ const ListContainer = () => {
   const [filterDay, setFilterDay] = useState(new Date());
   const [filter, setFilter] = useState("object");
 
-  const [tab, setTab] = useState(true);
+  const [tab, setTab] = useState(false);
   const [modalToID, setModalToID] = useState();
   let filterArray = [];
 

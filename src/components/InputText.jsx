@@ -5,7 +5,7 @@ import { EyeIcon, EyeOffIcon } from "SVG";
 export const InputName = ({ onChange, data }) => {
   return (
     <>
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-2">
         <p className={`${data && " text-green-500"}`}>*이름</p>
       </label>
       <input
@@ -27,7 +27,7 @@ export const InputPassword = ({ onChange, data }) => {
   };
   return (
     <>
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-2">
         <p className={`${data && " text-green-500"}`}>*비밀번호</p>
       </label>
       <div className="  relative w-full top-5 right-1 bg-slate-800 flex justify-end items-center">
@@ -53,7 +53,7 @@ export const InputPassword = ({ onChange, data }) => {
 export const InputObject = ({ onChange, data }) => {
   return (
     <>
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-2">
         <p className={`${data && " text-green-500"}`}>*물건종류</p>
       </label>
       <input
@@ -71,7 +71,7 @@ export const InputObject = ({ onChange, data }) => {
 export const InputPlace = ({ onChange, data }) => {
   return (
     <>
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-2">
         <p className={`${data && " text-green-500"}`}>*습득위치</p>
       </label>
       <input
@@ -90,7 +90,7 @@ export const InputPlace = ({ onChange, data }) => {
 export const InputLocker = ({ onChange, data }) => {
   return (
     <>
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-2">
         <p className={`${data && " text-green-500"}`}>*보관위치</p>
       </label>
       <input
@@ -108,7 +108,7 @@ export const InputLocker = ({ onChange, data }) => {
 export const InputMemo = ({ onChange, data }) => {
   return (
     <>
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-2">
         메모
       </label>
       <input

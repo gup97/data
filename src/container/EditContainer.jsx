@@ -51,9 +51,13 @@ const EditContainer = () => {
     // firebase 값 전송 (성공)
     //여기서 이미지를 서버에올리고()
     //초기화
+
     if (userDoc.StoragePath !== delTargetImg) {
       console.log("deleteimage");
       handleDeleteImage(delTargetImg);
+    }
+    if (userDoc.StoragePath === "") {
+      console.log("변화가있었으");
     }
     handleEdit(id, userDoc);
     e.preventDefault();

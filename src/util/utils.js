@@ -51,16 +51,22 @@ export const handleAddItem = async ({
 
 export const handleEdit = async (
   id,
-  { name, password, object, place, locker, memo, imagePath, date, location }
+  { name, password, object, place, locker, memo, imagePath, StoragePath, date, location }
 ) => {
   let imagePathUrl = "",
     imageRefPath = "";
-  if (imagePath !== "") {
+  if (StoragePath !== "") {
+    console.log("storage", StoragePath);
+    imagePathUrl = imagePath;
+    imageRefPath = StoragePath;
+  } else if (imagePath !== "") {
+    console.log("img");
     imageRefPath = v4();
     const imageRef = ref(storage, `images/${imageRefPath}`);
     const response = await uploadString(imageRef, imagePath, "data_url");
     imagePathUrl = await getDownloadURL(response.ref);
   }
+
   const docRef = doc(db, "userStore", id);
   const payload = {
     name,
@@ -80,7 +86,7 @@ export const handleEdit = async (
 
 export const handleDelete = async (id) => {
   const docRef = doc(db, "userStore", id);
-  console.log(id);
+  // console.log(id);
   await deleteDoc(docRef);
 };
 
@@ -89,8 +95,8 @@ export const handleDeleteImage = async (StoragePath) => {
   const desertRef = ref(storage, `images/${StoragePath}`);
   await deleteObject(desertRef)
     .then(() => {
-      console.log("이미지삭제완료");
-      console.log(StoragePath);
+      // console.log("이미지삭제완료");
+      // console.log(StoragePath);
       // File deleted successfully
     })
     .catch((error) => {

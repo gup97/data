@@ -6,7 +6,7 @@ export const MapContainer = ({ data = "", setData }) => {
   const [mapSize, setMapSize] = useState(["max-w-md", "400px"]);
   return (
     <div className="MapContainer">
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-2">
         습득 위치 (지도)
       </label>
       <button
@@ -14,7 +14,7 @@ export const MapContainer = ({ data = "", setData }) => {
         className=" bg-blue-500 w-full rounded-sm hover:bg-blue-700"
         onClick={() => setVisible((visible) => !visible)}
       >
-        <p className=" text-gray-200">{!visible ? "지도 열기" : "지도 닫기"}</p>
+        <p className=" text-gray-200 ">{!visible ? "지도 열기" : "지도 닫기"}</p>
       </button>
       <div id="wrap">
         {visible && (
@@ -43,8 +43,12 @@ export const MapListContainer = ({ userData, setModalToID }) => {
   const mouseOver = () => {};
   const mouseOut = () => {};
   const mapClick = () => {
-    console.log("맵클릭");
     setModalToID(() => null);
+  };
+  const mapListClick = (userData) => {
+    console.log("맵리스트중클릭");
+    console.log(userData);
+    setModalToID(() => userData);
   };
   return (
     <>

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 export const BottomSheetModal = ({ modalToID }) => {
-  console.log("id", modalToID);
   return (
     <>
       {modalToID && (
@@ -24,7 +23,7 @@ export const BottomSheetModal = ({ modalToID }) => {
               </div>
               <div className=" w-1/2  h-36 p-1 bg-slate-200">
                 <img
-                  class="object-scale-down h-full w-full bg-slate-200"
+                  className="object-scale-down h-full w-full bg-slate-200"
                   src={modalToID.imagePath}
                   alt="이미지 없음"
                 />

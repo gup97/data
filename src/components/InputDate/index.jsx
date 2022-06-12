@@ -22,7 +22,7 @@ export const InputDate = ({ data, setData }) => {
   ));
   return (
     <>
-      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+      <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-2">
         날짜
       </label>
       <DatePicker
