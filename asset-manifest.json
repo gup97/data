@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/dculost/static/css/main.82e0d57e.css",
-    "main.js": "/dculost/static/js/main.3f857469.js",
+    "main.js": "/dculost/static/js/main.e56814ad.js",
     "static/media/dcu.png": "/dculost/static/media/dcu.77d4e6746b0f63ec5008.png",
     "index.html": "/dculost/index.html",
     "main.82e0d57e.css.map": "/dculost/static/css/main.82e0d57e.css.map",
-    "main.3f857469.js.map": "/dculost/static/js/main.3f857469.js.map"
+    "main.e56814ad.js.map": "/dculost/static/js/main.e56814ad.js.map"
   },
   "entrypoints": [
     "static/css/main.82e0d57e.css",
-    "static/js/main.3f857469.js"
+    "static/js/main.e56814ad.js"
   ]
 }
