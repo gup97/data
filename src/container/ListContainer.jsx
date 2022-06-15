@@ -15,7 +15,7 @@ import { BottomSheetModal } from "components/BottomSheetModal";
 const ListContainer = () => {
   const [userStore, setUserStore] = useState();
   const [text, setText] = useState("");
-  const [filterDay, setFilterDay] = useState(new Date());
+  const [filterDay, setFilterDay] = useState();
   const [filter, setFilter] = useState("object");
 
   const [tab, setTab] = useState(false);

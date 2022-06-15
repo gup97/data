@@ -84,7 +84,7 @@ const renderHeaderContents = ({
   );
 };
 
-export const FilterDate = ({ dateFiltering, date, setDate }) => {
+export const FilterDate = ({ dateFiltering, date = new Date(), setDate }) => {
   const ExampleCustomInput = forwardRef(({ onClick }, ref) => (
     <button type="button" onClick={onClick} ref={ref}>
       <FilterIcon />

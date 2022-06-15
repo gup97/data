@@ -16,7 +16,7 @@ export const ListData = ({ main, sub, part }) => {
               {main}
             </p>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between truncate">
             <p className="text-sm font-medium truncate ">
               <span className="text-xs text-gray-400">습득장소 : </span>
               {sub}
