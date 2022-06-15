@@ -3,22 +3,18 @@ import { db } from "util/firebase";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { doc, onSnapshot } from "firebase/firestore";
-import { handleDelete, handleDeleteImage } from "util/utils";
-import { LoadingSpinner } from "components/Loading/LoadingSpinner";
 const DetailContainer = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [userDoc, setUserDoc] = useState([]);
   useEffect(() => {
     const docRef = doc(db, "userStore", id);
-
     const unsub = onSnapshot(docRef, (snapshot) => {
       setUserDoc(snapshot.data());
       console.log("doc fetching");
     });
     return unsub;
   }, []);
-
   return (
     <div className=" max-w-md mx-auto sm:max-w-3xl">
       <div className=" bg-slate-100 px-4 py-6 rounded-md shadow-xl">

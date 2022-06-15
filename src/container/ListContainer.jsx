@@ -36,9 +36,14 @@ const ListContainer = () => {
   }
   // //
   const dateFiltering = (e) => {
-    console.log("filterDay", e);
+    const compareDate = new Date(`${e.getFullYear()}-${e.getMonth() + 1}-${e.getDate()}`);
+
     const collectionRef = collection(db, "userStore");
-    const q = query(collectionRef, where("date", ">", e), orderBy("date", "desc"));
+    const q = query(
+      collectionRef,
+      where("date", ">=", compareDate),
+      orderBy("date", "desc")
+    );
     const unsub = onSnapshot(q, (snapshot) => {
       setUserStore(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });

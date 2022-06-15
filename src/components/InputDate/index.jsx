@@ -8,6 +8,7 @@ import { FilterIcon } from "SVG";
 export const InputDate = ({ data, setData }) => {
   if (Object.keys(data).includes("seconds")) {
     data = new Date(data.seconds * 1000);
+    console.log(data.getDay());
   }
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button
