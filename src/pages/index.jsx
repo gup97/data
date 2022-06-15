@@ -11,7 +11,7 @@ const Page = () => {
             <Link to="list">
               <div className=" group hover:bg-red-500 hover:border-white  bg-white   border-2 text-center border-red-500 rounded-md p-5">
                 <p className=" group-hover:text-white  text-red-500 text-2xl font-bold">
-                  물건을 찾고있어요
+                  주인을 찾고있어요
                 </p>
               </div>
             </Link>
