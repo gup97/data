@@ -56,4 +56,4 @@ listContainer 에서 tap을 통해 map container로 이동할 수 있다.
 
 ![답변](https://user-images.githubusercontent.com/80537765/175661439-73a86da7-03ca-4493-8f24-dd3c2773b6fe.png)
 
-내가 생각하고 짠 구조를 벗어나는 작업이라 코딩테스트 준비 이후 
+내가 생각하고 짠 구조를 벗어나는 작업이라 코딩테스트 준비 이후 수정하려고 한다!
