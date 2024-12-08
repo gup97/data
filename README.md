@@ -1,6 +1,8 @@
 
 ## [분실물 관리 서비스](https://gup97.github.io/dculost/)
 
+현재는 fire base 세선 종료하여 호스팅 되고 있지 않습니다
+
 #### 실시간 처리 어플리케이션 구현 
 
 [![미리보기](https://user-images.githubusercontent.com/80537765/173848505-2a34ba83-d7b0-44fc-9666-ca4995e1df30.PNG)](https://gup97.github.io/dculost/)
@@ -56,4 +58,3 @@ listContainer 에서 tap을 통해 map container로 이동할 수 있다.
 
 ![답변](https://user-images.githubusercontent.com/80537765/175661439-73a86da7-03ca-4493-8f24-dd3c2773b6fe.png)
 
-내가 생각하고 짠 구조를 벗어나는 작업이라 코딩테스트 준비 이후 수정하려고 한다!
